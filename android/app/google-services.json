@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "422253349573",
+    "project_id": "geoking-v2",
+    "storage_bucket": "geoking-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:422253349573:android:850dea9afc26bf4ac13eac",
+        "android_client_info": {
+          "package_name": "com.gs.tech.geoking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEpLheBWwTkOJkzpZC40O_EHLqZKHz708"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

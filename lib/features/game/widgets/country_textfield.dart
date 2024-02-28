@@ -3,21 +3,48 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geoking/features/game/bloc/game_bloc.dart';
 
-class CountryTextField extends StatelessWidget {
+class CountryTextField extends StatefulWidget {
   const CountryTextField({super.key});
 
   @override
+  State<CountryTextField> createState() => _CountryTextFieldState();
+}
+
+class _CountryTextFieldState extends State<CountryTextField> {
+  final TextEditingController countryController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    final state = context.watch<GameBloc>().state;
+    final countryFound = context.select((GameBloc bloc) => bloc.state.foundSecretCountry);
 
     return TextFormField(
-      onChanged: (value) {
-        context.read<GameBloc>().add(GameCountryChanged(country: value));
+      enabled: !countryFound,
+      onFieldSubmitted: (value) {
+        countryController.clear();
+        context.read<GameBloc>().add(GameCountrySubmitted(country: value));
       },
-      initialValue: state.country,
+      onTapOutside: (event) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      controller: countryController,
       decoration: const InputDecoration(
         hintText: 'Type a country',
+        contentPadding: EdgeInsets.only(
+          left: 8,
+          right: 8,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
       ),
+      cursorColor: Colors.black,
+      cursorHeight: 16,
       inputFormatters: [
         LengthLimitingTextInputFormatter(50),
       ],

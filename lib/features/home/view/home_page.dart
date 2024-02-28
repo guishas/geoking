@@ -59,7 +59,9 @@ class HomePage extends StatelessWidget {
                 height: 8,
               ),
               ElevatedButton(
-                onPressed: null,
+                onPressed: () async {
+                  Navigator.of(context).pushNamed('/leaderboard');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.homeButtonColor,
                   shape: RoundedRectangleBorder(

@@ -7,8 +7,12 @@ sealed class GameEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class GameCountryChanged extends GameEvent {
-  const GameCountryChanged({
+final class GameSubscriptionRequested extends GameEvent {
+  const GameSubscriptionRequested();
+}
+
+final class GameCountrySubmitted extends GameEvent {
+  const GameCountrySubmitted({
     required this.country,
   });
 
@@ -16,4 +20,15 @@ final class GameCountryChanged extends GameEvent {
 
   @override
   List<Object> get props => [country];
+}
+
+final class GameNameSubmitted extends GameEvent {
+  const GameNameSubmitted({
+    required this.name,
+  });
+
+  final String name;
+
+  @override
+  List<Object> get props => [name];
 }
