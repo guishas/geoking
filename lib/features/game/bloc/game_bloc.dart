@@ -1,7 +1,9 @@
+import 'dart:developer' as developer;
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:geoking/features/game/models/country.dart';
 import 'package:geoking/features/game/repository/game_repository.dart';
 import 'package:geoking/firebase/database_repository.dart';
@@ -33,7 +35,9 @@ class GameBloc extends Bloc<GameEvent, GameState> {
 
       final secretCountry = countries.elementAt(Random().nextInt(countries.length));
 
-      print(secretCountry.name!.common!);
+      if (kDebugMode) {
+        developer.log(secretCountry.name!.common!);
+      }
 
       emit(state.copyWith(
         status: GameStateStatus.success,
@@ -91,17 +95,20 @@ class GameBloc extends Bloc<GameEvent, GameState> {
   }
 
   Future<void> onGameNameSubmitted(GameNameSubmitted event, Emitter<GameState> emit) async {
+    emit(state.copyWith(highscoreStatus: GameHighscoreStatus.loading));
+
     final name = event.name;
 
     try {
       await databaseRepository.addScore(name, state.secretCountry!.name!.common!, state.attempts);
 
       emit(state.copyWith(
+        highscoreStatus: GameHighscoreStatus.success,
         status: GameStateStatus.finished,
       ));
     } catch (e) {
       emit(state.copyWith(
-        status: GameStateStatus.finished,
+        highscoreStatus: GameHighscoreStatus.failure,
       ));
     }
   }

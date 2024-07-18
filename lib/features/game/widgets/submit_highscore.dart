@@ -74,7 +74,7 @@ class _SubmitHighscoreState extends State<SubmitHighscore> {
                 ),
                 CustomButton(
                   onPressed: () {
-                    if (nameController.text.isEmpty) return;
+                    if (nameController.text.isEmpty || nameController.text.length <= 3) return;
 
                     context.read<GameBloc>().add(GameNameSubmitted(name: nameController.text.trim()));
                   },

@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const Spacer(),
+              const Spacer(flex: 2),
               const Text(
                 'GEOKING',
                 style: TextStyle(
@@ -77,29 +77,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 8,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/howToPlay');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.homeButtonColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: const Text(
-                  'HOW TO PLAY',
-                  style: TextStyle(
-                    color: AppColors.mainLightGreen,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              const Spacer(),
+              const Spacer(flex: 3),
             ],
           ),
         ),

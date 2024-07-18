@@ -8,9 +8,17 @@ enum GameStateStatus {
   finished,
 }
 
+enum GameHighscoreStatus {
+  initial,
+  loading,
+  success,
+  failure,
+}
+
 final class GameState extends Equatable {
   const GameState({
     this.status = GameStateStatus.initial,
+    this.highscoreStatus = GameHighscoreStatus.initial,
     this.isHighscore = false,
     this.countryExists = false,
     this.foundSecretCountry = false,
@@ -23,6 +31,7 @@ final class GameState extends Equatable {
   });
 
   final GameStateStatus status;
+  final GameHighscoreStatus highscoreStatus;
   final bool isHighscore;
   final bool countryExists;
   final bool foundSecretCountry;
@@ -35,6 +44,7 @@ final class GameState extends Equatable {
 
   GameState copyWith({
     GameStateStatus? status,
+    GameHighscoreStatus? highscoreStatus,
     bool? isHighscore,
     bool? countryExists,
     bool? foundSecretCountry,
@@ -47,6 +57,7 @@ final class GameState extends Equatable {
   }) {
     return GameState(
       status: status ?? this.status,
+      highscoreStatus: highscoreStatus ?? this.highscoreStatus,
       isHighscore: isHighscore ?? this.isHighscore,
       countryExists: countryExists ?? this.countryExists,
       foundSecretCountry: foundSecretCountry ?? this.foundSecretCountry,
@@ -60,5 +71,5 @@ final class GameState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [status, isHighscore, countryExists, secretCountry, lastTypedCountry, lastFoundCountry, submittedCountries, fetchedCountries, attempts];
+  List<Object?> get props => [status, highscoreStatus, isHighscore, countryExists, secretCountry, lastTypedCountry, lastFoundCountry, submittedCountries, fetchedCountries, attempts];
 }

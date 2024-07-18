@@ -17,28 +17,28 @@ class CountryMessage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           );
-        } else if (state.lastFoundCountry == null) {
-          return const SizedBox();
-        } else {
-          if (state.countryExists) {
-            final country = state.lastFoundCountry!;
+        } else if (state.countryExists) {
+          final country = state.lastFoundCountry!;
 
-            return Text(
-              '${country.name!.common!} is ${country.distance} km away from the secret country.',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            );
-          } else {
-            return Text(
-              '${state.lastTypedCountry} doesn\'t exist.',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            );
+          return Text(
+            '${country.name!.common!} is ${country.distance} km away from the secret country.',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        } else {
+          if (state.lastTypedCountry == null) {
+            return const SizedBox.shrink();
           }
+
+          return Text(
+            '${state.lastTypedCountry} doesn\'t exist.',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          );
         }
       },
     );

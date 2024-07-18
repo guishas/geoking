@@ -18,10 +18,6 @@ class RouteInfo {
         return MaterialPageRoute(
           builder: (context) => const LeaderboardPage(),
         );
-      case '/htp':
-        return MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        );
       default:
         return MaterialPageRoute(
           builder: (context) => const HomePage(),

@@ -12,6 +12,7 @@ class CountryTextField extends StatefulWidget {
 
 class _CountryTextFieldState extends State<CountryTextField> {
   final TextEditingController countryController = TextEditingController();
+  final FocusNode countryFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,11 @@ class _CountryTextFieldState extends State<CountryTextField> {
 
     return TextFormField(
       enabled: !countryFound,
+      focusNode: countryFocus,
       onFieldSubmitted: (value) {
         countryController.clear();
         context.read<GameBloc>().add(GameCountrySubmitted(country: value));
+        FocusScope.of(context).requestFocus(countryFocus);
       },
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
